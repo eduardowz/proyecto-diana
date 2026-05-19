@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noticias — Universidad Tecnológica Nexim</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #1a3fcc;
+  --blue-dark: #1230a8;
+  --blue-light: #2d52e0;
+  --red: #c0202a;
+  --white: #ffffff;
+  --off-white: #f8f8f8;
+  --gray-light: #e8e8e8;
+  --gray: #999;
+  --dark: #111;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--white);
+  color: var(--dark);
+}
+
+/* ── TOP BAR ── */
+.top-bar {
+  background: var(--red);
+  height: 4px;
+  width: 100%;
+}
+
+/* ── HEADER ── */
+header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding: 12px 48px;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  justify-content: flex-start;
+}
+
+.logo-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  line-height: 1.2;
+  justify-self: center;
+}
+
+.logo-text .universidad {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.logo-text .tecnologica {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--blue);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.logo-text .nexim {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--red);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid var(--gray-light);
+  border-radius: 30px;
+  overflow: hidden;
+  padding: 0 6px 0 18px;
+  background: var(--off-white);
+  gap: 6px;
+  transition: border-color 0.2s;
+  justify-self: end;
+}
+
+.search-box:focus-within { border-color: var(--blue); }
+
+.search-box input {
+  border: none;
+  background: transparent;
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  outline: none;
+  width: 200px;
+  color: var(--dark);
+  padding: 8px 0;
+}
+
+.search-box button {
+  background: var(--blue);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.search-box button:hover { background: var(--blue-dark); }
+
+/* ── NAV ── */
+nav {
+  background: var(--white);
+  border-bottom: 2px solid var(--gray-light);
+  position: relative;
+  z-index: 99;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: flex;
+  align-items: stretch;
+}
+
+nav ul li a {
+  display: flex;
+  align-items: center;
+  padding: 18px 48px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dark);
+  position: relative;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: var(--blue);
+  transition: width 0.3s ease;
+}
+
+nav ul li a:hover { color: var(--blue); }
+nav ul li a:hover::after { width: 100%; }
+nav ul li a.active { color: var(--blue); }
+nav ul li a.active::after { width: 100%; }
+nav ul li + li { border-left: 1px solid var(--gray-light); }
+
+#hb-wrap {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border-right: 1px solid var(--gray-light);
+}
+
+.hamburger-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 18px 26px;
+  transition: background 0.2s;
+}
+
+.hamburger-btn:hover { background: #f0f4ff; }
+
+.hamburger-btn span {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background: var(--blue);
+  border-radius: 1px;
+  transition: background 0.2s;
+}
+
+.hamburger-btn:hover span { background: var(--blue-dark); }
+
+#hb-wrap .submenu {
+  display: none;
+  position: fixed;
+  background: #fff;
+  border-top: 3px solid var(--blue);
+  min-width: 220px;
+  z-index: 200;
+  padding: 8px 0;
+  list-style: none;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+#hb-wrap .submenu.open { display: block; }
+
+#hb-wrap .submenu li { display: block; }
+
+#hb-wrap .submenu a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  font-size: 15px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  border-left: 3px solid transparent;
+  transition: all 0.2s;
+}
+
+#hb-wrap .submenu a::after { display: none; }
+
+#hb-wrap .submenu a svg {
+  width: 20px;
+  height: 20px;
+  color: var(--blue);
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+
+#hb-wrap .submenu a:hover {
+  background: #f0f4ff;
+  color: var(--blue);
+  border-left-color: var(--blue);
+}
+
+#hb-wrap .submenu a:hover svg { opacity: 1; }
+
+/* ── HERO BANNER ── */
+.news-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 60%, #0d1f7a 100%);
+  margin: 32px 48px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 160px;
+  padding: 36px 48px;
+  position: relative;
+}
+
+.news-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255,255,255,0.02) 0px,
+    rgba(255,255,255,0.02) 1px,
+    transparent 1px,
+    transparent 20px
+  );
+}
+
+.news-hero-text { position: relative; z-index: 1; }
+
+.news-hero-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: white;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.news-hero-text p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 360px;
+}
+
+.news-hero-img {
+  position: relative;
+  z-index: 1;
+  width: 360px;
+  height: 180px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+
+.news-hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.news-hero-img-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── SECTION TITLE ── */
+.section-label {
+  padding: 40px 48px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.section-label h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gray-light);
+}
+
+/* ── NOTICIAS GRID ── */
+.noticias-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 0 48px;
+}
+
+.noticia-card {
+  background: var(--off-white);
+  border: 1px solid var(--gray-light);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.noticia-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(26,63,204,0.12);
+}
+
+.noticia-card-img {
+  width: 100%;
+  height: 130px;
+  background: var(--gray-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.noticia-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.noticia-card-img-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #dde3f5;
+}
+
+.noticia-card-img-placeholder svg {
+  color: var(--blue);
+  opacity: 0.3;
+}
+
+.noticia-card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+}
+
+.noticia-card-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.noticia-card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.noticia-card-excerpt {
+  font-size: 12px;
+  color: var(--gray);
+  line-height: 1.5;
+}
+
+.noticia-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-top: 1px solid var(--gray-light);
+}
+
+.noticia-card-date {
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 0.5px;
+}
+
+.btn-ver-mas {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 0.2s;
+}
+
+.btn-ver-mas:hover { gap: 8px; }
+
+.btn-ver-mas svg { width: 12px; height: 12px; }
+
+/* ── ÚLTIMAS PUBLICACIONES ── */
+.publicaciones-list {
+  margin: 0 48px 64px;
+  border: 1px solid var(--gray-light);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.publicacion-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--gray-light);
+  cursor: pointer;
+  transition: background 0.2s, padding-left 0.2s;
+  background: var(--white);
+}
+
+.publicacion-item:last-child { border-bottom: none; }
+
+.publicacion-item:hover {
+  background: #f5f7ff;
+  padding-left: 30px;
+}
+
+.pub-date-box {
+  width: 44px;
+  height: 48px;
+  background: var(--blue);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 4px;
+  line-height: 1.1;
+}
+
+.pub-date-box .day  { font-size: 18px; font-weight: 700; }
+.pub-date-box .month { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; }
+
+.pub-info { flex: 1; }
+
+.pub-info .pub-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.pub-info .pub-meta {
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 0.5px;
+}
+
+.pub-arrow {
+  color: var(--blue);
+  opacity: 0.4;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.publicacion-item:hover .pub-arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  color: rgba(255,255,255,0.6);
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+footer .copy {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+footer .copy span { color: white; }
+
+.social-links {
+  display: flex;
+  gap: 16px;
+}
+
+.social-links a {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.social-links a:hover {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: white;
+  transform: translateY(-2px);
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<!-- HEADER -->
+<header>
+  <a class="logo-area" href="index.html">
+    <img class="logo-img" src="logo v2.png" alt="Logo Universidad Tecnológica Nexim">
+  </a>
+  <div class="logo-text">
+    <span class="universidad">Universidad</span>
+    <span class="tecnologica">— Tecnológica —</span>
+    <span class="nexim">Nexim</span>
+  </div>
+  <div class="search-box">
+    <input type="text" placeholder="Buscar...">
+    <button>
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <ul>
+    <li id="hb-wrap">
+      <button class="hamburger-btn" id="hb-btn">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="submenu" id="se-submenu">
+        <li>
+          <a href="noticias.html" class="active">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2"/>
+              <rect x="2" y="10" width="12" height="10" rx="1"/>
+              <path d="M2 14l2 2 4-4"/>
+            </svg>
+            Noticias
+          </a>
+        </li>
+        <li>
+          <a href="eventos.html">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            Eventos
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="estudiantil.html">Servicio Estudiantil</a></li>
+    <li><a href="admisiones.html">Admisiones</a></li>
+    <li><a href="carreras.html" class="active">Carreras</a></li>
+  </ul>
+</nav>
+
+<!-- HERO BANNER -->
+<div class="news-hero">
+  <div class="news-hero-text">
+    <h1>Noticias Nexim</h1>
+    <p>Infórmate sobre las últimas novedades de nuestra universidad tecnológica.</p>
+  </div>
+  <div class="news-hero-img">
+    <img src="baner.png" alt="Noticias Nexim">
+  </div>
+</div>
+
+<!-- NOTICIAS DESTACADAS -->
+<div class="section-label">
+  <h2>Noticias destacadas</h2>
+</div>
+
+<div class="noticias-grid">
+
+  <!-- Card 1 -->
+  <div class="noticia-card">
+    <div class="noticia-card-img">
+      <img src="campus.jpg" alt="Convocatoria Admisiones">
+    </div>
+    <div class="noticia-card-body">
+      <span class="noticia-card-tag">Admisiones</span>
+      <div class="noticia-card-title">Convocatoria de Admisiones Agosto–Diciembre 2026 ya disponible</div>
+      <div class="noticia-card-excerpt">Conoce los requisitos y fechas límite para el próximo ciclo escolar.</div>
+    </div>
+    <div class="noticia-card-footer">
+      <span class="noticia-card-date">12 Mayo 2026</span>
+      <a href="#" class="btn-ver-mas">
+        Ver más
+        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="noticia-card">
+    <div class="noticia-card-img">
+      <img src="vinculacion.jpg" alt="Convenio tecnológico">
+    </div>
+    <div class="noticia-card-body">
+      <span class="noticia-card-tag">Vinculación</span>
+      <div class="noticia-card-title">Nexim firma convenio con empresa tecnológica líder en la región</div>
+      <div class="noticia-card-excerpt">Nuevas oportunidades de prácticas profesionales para el alumnado.</div>
+    </div>
+    <div class="noticia-card-footer">
+      <span class="noticia-card-date">05 Mayo 2026</span>
+      <a href="#" class="btn-ver-mas">
+        Ver más
+        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="noticia-card">
+    <div class="noticia-card-img">
+      <img src="logros.jpg" alt="Hackathon nacional">
+    </div>
+    <div class="noticia-card-body">
+      <span class="noticia-card-tag">Logros</span>
+      <div class="noticia-card-title">Estudiantes de Ingeniería obtienen primer lugar en hackathon nacional</div>
+      <div class="noticia-card-excerpt">El equipo Nexim supera a más de 40 universidades del país.</div>
+    </div>
+    <div class="noticia-card-footer">
+      <span class="noticia-card-date">28 Abril 2026</span>
+      <a href="#" class="btn-ver-mas">
+        Ver más
+        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="noticia-card">
+    <div class="noticia-card-img">
+      <img src="salon.jpg" alt="Laboratorio de cómputo">
+    </div>
+    <div class="noticia-card-body">
+      <span class="noticia-card-tag">Infraestructura</span>
+      <div class="noticia-card-title">Nuevo laboratorio de cómputo abre sus puertas al alumnado</div>
+      <div class="noticia-card-excerpt">Equipos de última generación disponibles para todos los estudiantes.</div>
+    </div>
+    <div class="noticia-card-footer">
+      <span class="noticia-card-date">15 Abril 2026</span>
+      <a href="#" class="btn-ver-mas">
+        Ver más
+        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ÚLTIMAS PUBLICACIONES -->
+<div class="section-label" style="padding-top: 48px;">
+  <h2>Últimas publicaciones</h2>
+</div>
+
+<div class="publicaciones-list">
+
+  <div class="publicacion-item">
+    <div class="pub-date-box">
+      <span class="day">12</span>
+      <span class="month">May</span>
+    </div>
+    <div class="pub-info">
+      <div class="pub-title">Convocatoria de Admisiones Agosto–Diciembre 2026 ya disponible</div>
+      <div class="pub-meta">Admisiones · 3 min de lectura</div>
+    </div>
+    <svg class="pub-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <line x1="5" y1="12" x2="19" y2="12"/>
+      <polyline points="12 5 19 12 12 19"/>
+    </svg>
+  </div>
+
+  <div class="publicacion-item">
+    <div class="pub-date-box">
+      <span class="day">05</span>
+      <span class="month">May</span>
+    </div>
+    <div class="pub-info">
+      <div class="pub-title">Nexim firma convenio con empresa tecnológica líder en la región</div>
+      <div class="pub-meta">Vinculación · 2 min de lectura</div>
+    </div>
+    <svg class="pub-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <line x1="5" y1="12" x2="19" y2="12"/>
+      <polyline points="12 5 19 12 12 19"/>
+    </svg>
+  </div>
+
+  <div class="publicacion-item">
+    <div class="pub-date-box">
+      <span class="day">28</span>
+      <span class="month">Abr</span>
+    </div>
+    <div class="pub-info">
+      <div class="pub-title">Estudiantes de Ingeniería obtienen primer lugar en hackathon nacional</div>
+      <div class="pub-meta">Logros · 4 min de lectura</div>
+    </div>
+    <svg class="pub-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <line x1="5" y1="12" x2="19" y2="12"/>
+      <polyline points="12 5 19 12 12 19"/>
+    </svg>
+  </div>
+
+  <div class="publicacion-item">
+    <div class="pub-date-box">
+      <span class="day">15</span>
+      <span class="month">Abr</span>
+    </div>
+    <div class="pub-info">
+      <div class="pub-title">Nuevo laboratorio de cómputo abre sus puertas al alumnado</div>
+      <div class="pub-meta">Infraestructura · 2 min de lectura</div>
+    </div>
+    <svg class="pub-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <line x1="5" y1="12" x2="19" y2="12"/>
+      <polyline points="12 5 19 12 12 19"/>
+    </svg>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="copy">© <span>Universidad Tecnológica Nexim</span> · Todos los derechos reservados</div>
+  <div class="social-links">
+    <a href="#" title="Instagram">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="5"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a href="#" title="Facebook">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+      </svg>
+    </a>
+    <a href="#" title="Twitter">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+      </svg>
+    </a>
+    <a href="#" title="LinkedIn">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+        <rect x="2" y="9" width="4" height="12"/>
+        <circle cx="4" cy="4" r="2"/>
+      </svg>
+    </a>
+  </div>
+</footer>
+
+<script>
+  const hbBtn = document.getElementById('hb-btn');
+  const submenu = document.getElementById('se-submenu');
+
+  hbBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const isOpen = submenu.classList.toggle('open');
+    if (isOpen) {
+      const rect = hbBtn.getBoundingClientRect();
+      submenu.style.top = rect.bottom + 'px';
+      submenu.style.left = rect.left + 'px';
+    }
+  });
+
+  document.addEventListener('click', function() {
+    submenu.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>

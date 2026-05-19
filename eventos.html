@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eventos — Universidad Tecnológica Nexim</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #1a3fcc;
+  --blue-dark: #1230a8;
+  --blue-light: #2d52e0;
+  --red: #c0202a;
+  --white: #ffffff;
+  --off-white: #f8f8f8;
+  --gray-light: #e8e8e8;
+  --gray: #999;
+  --dark: #111;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--white);
+  color: var(--dark);
+}
+
+.top-bar { background: var(--red); height: 4px; width: 100%; }
+
+/* ── HEADER ── */
+header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding: 12px 48px;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.logo-area { display: flex; align-items: center; text-decoration: none; }
+.logo-img { width: 100px; height: 100px; object-fit: contain; }
+
+.logo-text {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; line-height: 1.2; justify-self: center;
+}
+.logo-text .universidad {
+  font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+  color: var(--dark); letter-spacing: 2px; text-transform: uppercase;
+}
+.logo-text .tecnologica {
+  font-size: 13px; font-weight: 500; color: var(--blue);
+  letter-spacing: 4px; text-transform: uppercase;
+}
+.logo-text .nexim {
+  font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900;
+  color: var(--red); letter-spacing: 6px; text-transform: uppercase;
+}
+
+.search-box {
+  display: flex; align-items: center; border: 1.5px solid var(--gray-light);
+  border-radius: 30px; overflow: hidden; padding: 0 6px 0 18px;
+  background: var(--off-white); gap: 6px; transition: border-color 0.2s; justify-self: end;
+}
+.search-box:focus-within { border-color: var(--blue); }
+.search-box input {
+  border: none; background: transparent; font-family: 'Barlow', sans-serif;
+  font-size: 14px; outline: none; width: 200px; color: var(--dark); padding: 8px 0;
+}
+.search-box button {
+  background: var(--blue); border: none; border-radius: 50%; width: 32px; height: 32px;
+  color: white; cursor: pointer; display: flex; align-items: center;
+  justify-content: center; transition: background 0.2s;
+}
+.search-box button:hover { background: var(--blue-dark); }
+
+/* ── NAV ── */
+nav {
+  background: var(--white);
+  border-bottom: 2px solid var(--gray-light);
+  position: relative; z-index: 99;
+}
+nav ul {
+  display: flex; list-style: none; justify-content: center;
+  align-items: stretch; margin: 0; padding: 0;
+}
+nav ul li { display: flex; align-items: stretch; }
+nav ul li a {
+  display: flex; align-items: center; padding: 18px 48px;
+  text-decoration: none; font-size: 13px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--dark);
+  position: relative; transition: color 0.2s; white-space: nowrap;
+}
+nav ul li a::after {
+  content: ''; position: absolute; bottom: 0; left: 50%;
+  transform: translateX(-50%); width: 0; height: 3px;
+  background: var(--blue); transition: width 0.3s ease;
+}
+nav ul li a:hover { color: var(--blue); }
+nav ul li a:hover::after { width: 100%; }
+nav ul li a.active { color: var(--blue); }
+nav ul li a.active::after { width: 100%; }
+nav ul li + li { border-left: 1px solid var(--gray-light); }
+
+#hb-wrap {
+  position: relative; display: flex; align-items: stretch;
+  border-right: 1px solid var(--gray-light);
+}
+.hamburger-btn {
+  display: flex; flex-direction: column; gap: 5px; justify-content: center;
+  align-items: center; background: none; border: none; cursor: pointer;
+  padding: 18px 26px; transition: background 0.2s;
+}
+.hamburger-btn:hover { background: #f0f4ff; }
+.hamburger-btn span {
+  display: block; width: 24px; height: 2.5px;
+  background: var(--blue); border-radius: 1px;
+}
+.hamburger-btn:hover span { background: var(--blue-dark); }
+
+#hb-wrap .submenu {
+  display: none; position: fixed; background: #fff;
+  border-top: 3px solid var(--blue); min-width: 220px; z-index: 200;
+  padding: 8px 0; list-style: none; border-radius: 0 0 10px 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+#hb-wrap .submenu.open { display: block; }
+#hb-wrap .submenu li { display: block; }
+#hb-wrap .submenu a {
+  display: flex; align-items: center; gap: 12px; padding: 14px 24px;
+  font-size: 15px; color: #333; text-decoration: none; font-weight: 500;
+  letter-spacing: 0.5px; text-transform: none; border-left: 3px solid transparent;
+  transition: all 0.2s;
+}
+#hb-wrap .submenu a::after { display: none; }
+#hb-wrap .submenu a svg {
+  width: 20px; height: 20px; color: var(--blue); opacity: 0.6;
+  transition: opacity 0.2s; flex-shrink: 0;
+}
+#hb-wrap .submenu a:hover { background: #f0f4ff; color: var(--blue); border-left-color: var(--blue); }
+#hb-wrap .submenu a:hover svg { opacity: 1; }
+
+/* ── HERO BANNER ── */
+.eventos-hero {
+  display: flex; align-items: center; justify-content: space-between;
+  background: linear-gradient(135deg, #0d1f7a 0%, var(--blue-dark) 50%, var(--blue) 100%);
+  margin: 32px 48px 0; border-radius: 10px; overflow: hidden;
+  min-height: 160px; padding: 36px 48px; position: relative;
+}
+.eventos-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    -45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px,
+    transparent 1px, transparent 20px
+  );
+}
+.eventos-hero-text { position: relative; z-index: 1; }
+.eventos-hero-text h1 {
+  font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900;
+  color: white; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px;
+}
+.eventos-hero-text p {
+  font-size: 14px; color: rgba(255,255,255,0.75);
+  font-weight: 400; line-height: 1.6; max-width: 360px;
+}
+.eventos-hero-img {
+  position: relative; z-index: 1; width: 200px; height: 120px;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.4); flex-shrink: 0; overflow: hidden;
+}
+.eventos-hero-img span { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; margin-top: 8px; display: block; }
+.eventos-hero-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+
+/* ── SECTION LABEL ── */
+.section-label {
+  padding: 40px 48px 20px; display: flex; align-items: center; gap: 14px;
+}
+.section-label h2 {
+  font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700;
+  color: var(--dark); letter-spacing: 2px; text-transform: uppercase;
+  white-space: nowrap;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--gray-light); }
+
+/* ── EVENTOS DESTACADOS (3 cols) ── */
+.eventos-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; padding: 0 48px;
+}
+
+.evento-card {
+  background: var(--off-white); border: 1px solid var(--gray-light);
+  border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s; cursor: pointer;
+}
+.evento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(26,63,204,0.12);
+}
+
+.evento-card-img {
+  width: 100%; height: 140px; background: #dde3f5;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.evento-card-img svg { color: var(--blue); opacity: 0.25; }
+.evento-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.evento-card-date-strip {
+  position: absolute; top: 12px; left: 12px;
+  background: var(--blue); color: white;
+  border-radius: 4px; padding: 6px 10px; text-align: center; line-height: 1.1;
+}
+.evento-card-date-strip .day { font-size: 22px; font-weight: 700; display: block; }
+.evento-card-date-strip .month { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; }
+
+.evento-card-body { padding: 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.evento-card-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--red);
+}
+.evento-card-title { font-size: 14px; font-weight: 600; color: var(--dark); line-height: 1.5; flex: 1; }
+.evento-card-place { font-size: 12px; color: var(--gray); display: flex; align-items: center; gap: 4px; }
+
+.evento-card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 18px; border-top: 1px solid var(--gray-light);
+}
+.evento-card-time { font-size: 11px; color: var(--gray); letter-spacing: 0.5px; }
+.btn-ver-detalles {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--blue); text-decoration: none; display: flex; align-items: center;
+  gap: 4px; transition: gap 0.2s;
+}
+.btn-ver-detalles:hover { gap: 8px; }
+.btn-ver-detalles svg { width: 12px; height: 12px; }
+
+/* ── BOTTOM SECTION (lista + formulario) ── */
+.bottom-section {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 32px; padding: 0 48px 64px; margin-top: 0;
+}
+
+/* Lista próximas actividades */
+.actividades-list {
+  border: 1px solid var(--gray-light); border-radius: 8px; overflow: hidden;
+  align-self: start;
+}
+
+.actividad-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 20px; border-bottom: 1px solid var(--gray-light);
+  cursor: pointer; transition: background 0.2s, padding-left 0.2s;
+  background: var(--white);
+}
+.actividad-item:last-child { border-bottom: none; }
+.actividad-item:hover { background: #f5f7ff; padding-left: 26px; }
+
+.act-date-box {
+  width: 42px; height: 46px; background: var(--blue); color: white;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border-radius: 4px; flex-shrink: 0; line-height: 1.1;
+}
+.act-date-box .day { font-size: 17px; font-weight: 700; }
+.act-date-box .month { font-size: 8px; letter-spacing: 1px; text-transform: uppercase; }
+
+.act-info .act-title { font-size: 13px; font-weight: 600; color: var(--dark); line-height: 1.4; margin-bottom: 3px; }
+.act-info .act-meta { font-size: 11px; color: var(--gray); }
+
+.act-arrow { color: var(--blue); opacity: 0.3; transition: opacity 0.2s, transform 0.2s; margin-left: auto; flex-shrink: 0; }
+.actividad-item:hover .act-arrow { opacity: 1; transform: translateX(4px); }
+
+/* Formulario registro */
+.registro-form {
+  background: var(--off-white); border: 1px solid var(--gray-light);
+  border-radius: 8px; padding: 32px; display: flex; flex-direction: column; gap: 20px;
+}
+
+.registro-form-header { text-align: center; margin-bottom: 4px; }
+.registro-form-header h3 {
+  font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700;
+  color: var(--dark); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px;
+}
+.registro-form-header p { font-size: 12px; color: var(--gray); letter-spacing: 0.5px; }
+
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label {
+  font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--dark);
+}
+.form-group input,
+.form-group select {
+  font-family: 'Barlow', sans-serif; font-size: 14px;
+  padding: 12px 16px; border: 1.5px solid var(--gray-light);
+  border-radius: 6px; background: var(--white); color: var(--dark);
+  outline: none; transition: border-color 0.2s;
+  appearance: none; -webkit-appearance: none;
+}
+.form-group input:focus,
+.form-group select:focus { border-color: var(--blue); }
+.form-group input::placeholder { color: var(--gray); }
+
+.select-wrapper { position: relative; }
+.select-wrapper select { width: 100%; padding-right: 36px; cursor: pointer; }
+.select-wrapper::after {
+  content: ''; position: absolute; right: 14px; top: 50%;
+  transform: translateY(-50%); width: 0; height: 0;
+  border-left: 5px solid transparent; border-right: 5px solid transparent;
+  border-top: 6px solid var(--gray); pointer-events: none;
+}
+
+.btn-registrarse {
+  background: var(--blue); color: white; border: none; border-radius: 6px;
+  font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; padding: 14px;
+  cursor: pointer; transition: background 0.2s, transform 0.2s; margin-top: 4px;
+}
+.btn-registrarse:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark); color: rgba(255,255,255,0.6);
+  padding: 32px 48px; display: flex; align-items: center; justify-content: space-between;
+}
+footer .copy { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
+footer .copy span { color: white; }
+.social-links { display: flex; gap: 16px; }
+.social-links a {
+  width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.6); text-decoration: none; transition: all 0.2s;
+}
+.social-links a:hover { background: var(--blue); border-color: var(--blue); color: white; transform: translateY(-2px); }
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<!-- HEADER -->
+<header>
+  <a class="logo-area" href="index.html">
+    <img class="logo-img" src="logo v2.png" alt="Logo Universidad Tecnológica Nexim">
+  </a>
+  <div class="logo-text">
+    <span class="universidad">Universidad</span>
+    <span class="tecnologica">— Tecnológica —</span>
+    <span class="nexim">Nexim</span>
+  </div>
+  <div class="search-box">
+    <input type="text" placeholder="Buscar...">
+    <button>
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <ul>
+    <li id="hb-wrap">
+      <button class="hamburger-btn" id="hb-btn">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="submenu" id="se-submenu">
+        <li>
+          <a href="noticias.html">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2"/>
+              <rect x="2" y="10" width="12" height="10" rx="1"/>
+              <path d="M2 14l2 2 4-4"/>
+            </svg>
+            Noticias
+          </a>
+        </li>
+        <li>
+          <a href="eventos.html" class="active">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            Eventos
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="estudiantil.html">Servicio Estudiantil</a></li>
+    <li><a href="admisiones.html">Admisiones</a></li>
+    <li><a href="carreras.html">Carreras</a></li>
+  </ul>
+</nav>
+
+<!-- HERO BANNER -->
+<div class="eventos-hero">
+  <div class="eventos-hero-text">
+    <h1>Eventos Nexim</h1>
+    <p>Únete a nuestras actividades académicas, culturales y tecnológicas.</p>
+  </div>
+  <div class="eventos-hero-img">
+    <img src="expo.png" alt="Eventos Nexim">
+  </div>
+</div>
+
+<!-- EVENTOS DESTACADOS -->
+<div class="section-label">
+  <h2>Eventos Destacados</h2>
+</div>
+
+<div class="eventos-grid">
+
+  <!-- Card 1 -->
+  <div class="evento-card">
+    <div class="evento-card-img">
+      <img src="evento tec.jpg" alt="Evento Nexim">
+      <div class="evento-card-date-strip">
+        <span class="day">20</span>
+        <span class="month">May</span>
+      </div>
+    </div>
+    <div class="evento-card-body">
+      <span class="evento-card-tag">Académico</span>
+      <div class="evento-card-title">Expo Carreras 2026 — Conoce tu futuro profesional</div>
+      <div class="evento-card-place">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        Aula Magna
+      </div>
+    </div>
+    <div class="evento-card-footer">
+      <span class="evento-card-time">10:00 AM</span>
+      <a href="#" class="btn-ver-detalles">
+        Ver detalles
+        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="evento-card">
+    <div class="evento-card-img">
+      <img src="evento 2.jpg" alt="Evento Nexim">
+      <div class="evento-card-date-strip">
+        <span class="day">27</span>
+        <span class="month">May</span>
+      </div>
+    </div>
+    <div class="evento-card-body">
+      <span class="evento-card-tag">Tecnología</span>
+      <div class="evento-card-title">Conferencia: Inteligencia Artificial en la Industria</div>
+      <div class="evento-card-place">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        Sala de Conferencias
+      </div>
+    </div>
+    <div class="evento-card-footer">
+      <span class="evento-card-time">9:00 AM</span>
+      <a href="#" class="btn-ver-detalles">
+        Ver detalles
+        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="evento-card">
+    <div class="evento-card-img">
+      <img src="inivacion.jpg" alt="Evento Nexim">
+      <div class="evento-card-date-strip">
+        <span class="day">03</span>
+        <span class="month">Jun</span>
+      </div>
+    </div>
+    <div class="evento-card-body">
+      <span class="evento-card-tag">Emprendimiento</span>
+      <div class="evento-card-title">Taller de Emprendimiento e Innovación</div>
+      <div class="evento-card-place">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        Centro de Vinculación
+      </div>
+    </div>
+    <div class="evento-card-footer">
+      <span class="evento-card-time">2:00 PM</span>
+      <a href="#" class="btn-ver-detalles">
+        Ver detalles
+        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- PRÓXIMAS ACTIVIDADES + FORMULARIO -->
+<div class="section-label" style="padding-top:48px;">
+  <h2>Próximas actividades</h2>
+</div>
+
+<div class="bottom-section">
+
+  <!-- Lista -->
+  <div class="actividades-list">
+    <div class="actividad-item">
+      <div class="act-date-box"><span class="day">15</span><span class="month">Jun</span></div>
+      <div class="act-info">
+        <div class="act-title">Ceremonia de Graduación Generación 2026</div>
+        <div class="act-meta">Auditorio Principal · 5:00 PM</div>
+      </div>
+      <svg class="act-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </div>
+    <div class="actividad-item">
+      <div class="act-date-box"><span class="day">22</span><span class="month">Jun</span></div>
+      <div class="act-info">
+        <div class="act-title">Feria de Ciencias e Innovación Tecnológica</div>
+        <div class="act-meta">Patio Central · 10:00 AM</div>
+      </div>
+      <svg class="act-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </div>
+    <div class="actividad-item">
+      <div class="act-date-box"><span class="day">01</span><span class="month">Jul</span></div>
+      <div class="act-info">
+        <div class="act-title">Semana de Orientación para Nuevos Ingresos</div>
+        <div class="act-meta">Aula Magna · 8:00 AM</div>
+      </div>
+      <svg class="act-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </div>
+    <div class="actividad-item">
+      <div class="act-date-box"><span class="day">10</span><span class="month">Jul</span></div>
+      <div class="act-info">
+        <div class="act-title">Torneo Deportivo Interfacultades Nexim 2026</div>
+        <div class="act-meta">Canchas Deportivas · 9:00 AM</div>
+      </div>
+      <svg class="act-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Formulario -->
+  <div class="registro-form">
+    <div class="registro-form-header">
+      <h3>Registro a eventos</h3>
+      <p>Regístrate y asegura tu lugar en nuestros eventos</p>
+    </div>
+
+    <div class="form-group">
+      <label>Nombre completo</label>
+      <input type="text" placeholder="Tu nombre completo">
+    </div>
+
+    <div class="form-group">
+      <label>Correo Electrónico</label>
+      <input type="email" placeholder="correo@ejemplo.com">
+    </div>
+
+    <div class="form-group">
+      <label>Selecciona un evento</label>
+      <div class="select-wrapper">
+        <select>
+          <option value="" disabled selected>— Elige un evento —</option>
+          <option>Expo Carreras 2026 · 20 May</option>
+          <option>Conferencia: IA en la Industria · 27 May</option>
+          <option>Taller de Emprendimiento · 03 Jun</option>
+          <option>Ceremonia de Graduación · 15 Jun</option>
+          <option>Feria de Ciencias · 22 Jun</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn-registrarse">Registrarse</button>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="copy">© <span>Universidad Tecnológica Nexim</span> · Todos los derechos reservados</div>
+  <div class="social-links">
+    <a href="#" title="Instagram">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="5"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a href="#" title="Facebook">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+      </svg>
+    </a>
+    <a href="#" title="Twitter">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+      </svg>
+    </a>
+    <a href="#" title="LinkedIn">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+        <rect x="2" y="9" width="4" height="12"/>
+        <circle cx="4" cy="4" r="2"/>
+      </svg>
+    </a>
+  </div>
+</footer>
+
+<script>
+  const hbBtn = document.getElementById('hb-btn');
+  const submenu = document.getElementById('se-submenu');
+
+  hbBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const isOpen = submenu.classList.toggle('open');
+    if (isOpen) {
+      const rect = hbBtn.getBoundingClientRect();
+      submenu.style.top = rect.bottom + 'px';
+      submenu.style.left = rect.left + 'px';
+    }
+  });
+
+  document.addEventListener('click', function() {
+    submenu.classList.remove('open');
+  });
+
+  // Feedback visual al registrarse
+  document.querySelector('.btn-registrarse').addEventListener('click', function() {
+    const nombre = document.querySelector('input[type="text"]').value.trim();
+    const correo = document.querySelector('input[type="email"]').value.trim();
+    const evento = document.querySelector('select').value;
+    if (!nombre || !correo || !evento) {
+      this.textContent = 'Completa todos los campos';
+      this.style.background = 'var(--red)';
+      setTimeout(() => {
+        this.textContent = 'Registrarse';
+        this.style.background = '';
+      }, 2000);
+      return;
+    }
+    this.textContent = '¡Registro exitoso!';
+    this.style.background = '#1a8a4a';
+    setTimeout(() => {
+      this.textContent = 'Registrarse';
+      this.style.background = '';
+    }, 3000);
+  });
+</script>
+
+</body>
+</html>

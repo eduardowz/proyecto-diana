@@ -1,0 +1,308 @@
+/* ── PAGE TITLE ── */
+.page-title {
+  text-align: center;
+  padding: 48px 48px 36px;
+  border-bottom: 2px solid var(--gray-light);
+  background: var(--white);
+}
+
+.page-title h2 {
+  font-family: 'Barlow', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+.page-title p {
+  font-size: 14px;
+  color: var(--gray);
+  letter-spacing: 1px;
+}
+
+/* ── NAV ACTIVE ── */
+nav ul li a.active {
+  color: var(--blue);
+}
+nav ul li a.active::after {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 3px;
+  background: var(--blue);
+  content: '';
+}
+
+/* ── PASOS SECTION ── */
+.pasos-section {
+  padding: 64px 48px 48px;
+  background: var(--white);
+}
+
+.pasos-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Tarjeta de paso */
+.paso-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 220px;
+  padding: 32px 24px;
+  border-radius: 16px;
+  background: var(--blue);
+  border: 2px solid var(--blue);
+  box-shadow: 0 8px 28px rgba(26, 63, 204, 0.25);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.paso-card h4 {
+  color: white;
+}
+
+.paso-card p {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.paso-card:hover {
+  box-shadow: 0 12px 36px rgba(26, 63, 204, 0.4);
+  transform: translateY(-4px);
+}
+
+.paso-card.destacado {
+  background: var(--blue);
+  border-color: var(--blue);
+  box-shadow: 0 8px 28px rgba(26, 63, 204, 0.25);
+}
+
+.paso-card.destacado h4,
+.paso-card.destacado p {
+  color: white;
+}
+
+/* Círculo con ícono + número */
+.paso-circulo {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue);
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.paso-card:hover .paso-circulo {
+  transform: scale(1.08);
+}
+
+.paso-num {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--red);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paso-card.destacado .paso-num {
+  background: var(--blue);
+  border: 2px solid white;
+}
+
+.paso-card h4 {
+  font-family: 'Barlow', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.paso-card p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Conector entre pasos */
+.paso-conector {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding-bottom: 60px;
+  flex-shrink: 0;
+}
+
+.paso-conector .linea {
+  width: 40px;
+  height: 2px;
+  background: var(--gray-light);
+}
+
+/* ── INFO SECTION ── */
+.info-section {
+  background: var(--off-white);
+  padding: 48px;
+}
+
+.info-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.info-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.12);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 28px;
+  color: white;
+}
+
+.costos-header { background: var(--blue); }
+.becas-header  { background: var(--blue-dark); }
+
+.card-header h3 {
+  font-family: 'Barlow', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.card-body {
+  padding: 8px 28px 24px;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--gray-light);
+  font-size: 14px;
+}
+
+.card-row:last-child { border-bottom: none; }
+
+.card-row span { color: #555; }
+
+.card-row strong {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.beca-pct {
+  color: var(--blue-dark) !important;
+}
+
+/* ── CTA SECTION ── */
+.cta-section {
+  padding: 64px 48px;
+  background: var(--white);
+}
+
+.cta-box {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, var(--blue-light) 100%);
+  border-radius: 20px;
+  padding: 52px 48px;
+  color: white;
+  box-shadow: 0 12px 40px rgba(26, 63, 204, 0.25);
+}
+
+.cta-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.cta-box p {
+  font-size: 15px;
+  opacity: 0.85;
+  letter-spacing: 1px;
+  margin-bottom: 32px;
+}
+
+.cta-btns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.cta-btns .btn-primary {
+  background: white;
+  color: var(--blue);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.cta-btns .btn-primary:hover {
+  background: var(--off-white);
+  transform: translateY(-2px);
+}
+
+.btn-outline-dark {
+  border: 2px solid rgba(255,255,255,0.6);
+  color: white;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 12px 32px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-outline-dark:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: white;
+  transform: translateY(-2px);
+}
