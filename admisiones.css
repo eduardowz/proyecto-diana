@@ -306,3 +306,175 @@ nav ul li a.active::after {
   border-color: white;
   transform: translateY(-2px);
 }
+
+/* ── FORMULARIO DE SOLICITUD ── */
+.solicitud-section {
+  padding: 0 48px 64px;
+}
+
+.section-label {
+  padding: 40px 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-label h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark, #111);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gray-light, #e8e8e8);
+}
+
+.solicitud-form {
+  background: var(--off-white, #f8f8f8);
+  border: 1px solid var(--gray-light, #e8e8e8);
+  border-radius: 10px;
+  padding: 40px;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.solicitud-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 28px;
+}
+
+.solicitud-form-grid .full {
+  grid-column: 1 / -1;
+}
+
+.sform-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sform-group label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dark, #111);
+}
+
+.sform-group input,
+.sform-group select,
+.sform-group textarea {
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  padding: 12px 16px;
+  border: 1.5px solid var(--gray-light, #e8e8e8);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--dark, #111);
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.sform-group input:focus,
+.sform-group select:focus,
+.sform-group textarea:focus { border-color: var(--blue, #1a3fcc); }
+
+.sform-group input.error,
+.sform-group select.error { border-color: var(--red, #c0202a); }
+
+.sform-group input.ok,
+.sform-group select.ok { border-color: #1a8a4a; }
+
+.sform-group input::placeholder,
+.sform-group textarea::placeholder { color: var(--gray, #999); }
+
+.sform-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.select-wrap { position: relative; }
+.select-wrap select { width: 100%; padding-right: 36px; cursor: pointer; }
+.select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 14px; top: 50%;
+  transform: translateY(-50%);
+  width: 0; height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--gray, #999);
+  pointer-events: none;
+}
+
+.field-error {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--red, #c0202a);
+  min-height: 16px;
+  display: none;
+}
+.field-error.visible { display: block; }
+
+.sform-alert {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.sform-alert.visible { display: flex; }
+.sform-alert.error { background: #fef2f2; border: 1px solid #fca5a5; color: #b91c1c; }
+.sform-alert.success { background: #f0fdf4; border: 1px solid #86efac; color: #166534; }
+
+.sform-footer {
+  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.btn-enviar-solicitud {
+  background: var(--blue, #1a3fcc);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 36px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-enviar-solicitud:hover { background: var(--blue-dark, #1230a8); transform: translateY(-1px); }
+.btn-enviar-solicitud:disabled { background: var(--gray, #999); cursor: not-allowed; transform: none; }
+
+.btn-limpiar {
+  background: none;
+  border: 1.5px solid var(--gray-light, #e8e8e8);
+  border-radius: 6px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 13px 24px;
+  color: var(--gray, #999);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-limpiar:hover { border-color: var(--red, #c0202a); color: var(--red, #c0202a); }

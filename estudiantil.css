@@ -123,3 +123,147 @@ nav ul li a.active::after {
   background: var(--blue);
   color: white;
 }
+
+/* ── FORMULARIO DE TUTORÍAS / CONTACTO ── */
+.contacto-section {
+  padding: 0 48px 64px;
+}
+
+.section-label {
+  padding: 0 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-label h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 700;
+  color: #111; letter-spacing: 2px;
+  text-transform: uppercase; white-space: nowrap;
+}
+.section-label::after {
+  content: ''; flex: 1; height: 1px; background: #e8e8e8;
+}
+
+.contacto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Panel info */
+.contacto-info {
+  background: #1a3fcc;
+  border-radius: 10px;
+  padding: 36px;
+  color: white;
+}
+.contacto-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.contacto-info p {
+  font-size: 13px; opacity: 0.8; line-height: 1.7;
+  margin-bottom: 28px;
+}
+.contacto-dato {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 14px 0; border-top: 1px solid rgba(255,255,255,0.15);
+}
+.contacto-dato:first-of-type { border-top: none; }
+.contacto-dato-icon {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.contacto-dato-text span {
+  display: block; font-size: 10px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; opacity: 0.6; margin-bottom: 2px;
+}
+.contacto-dato-text p {
+  font-size: 13px; opacity: 1; margin: 0; font-weight: 500;
+}
+
+/* Formulario */
+.contacto-form {
+  background: #f8f8f8;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  padding: 36px;
+  display: flex; flex-direction: column; gap: 18px;
+}
+
+.cf-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: #111; margin-bottom: 4px;
+}
+.cf-sub {
+  font-size: 12px; color: #999; margin-bottom: 8px;
+}
+
+.cf-group {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.cf-group label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; color: #111;
+}
+.cf-group input,
+.cf-group select,
+.cf-group textarea {
+  font-family: 'Barlow', sans-serif; font-size: 14px;
+  padding: 12px 16px;
+  border: 1.5px solid #e8e8e8;
+  border-radius: 6px; background: white; color: #111;
+  outline: none; transition: border-color 0.2s;
+  appearance: none; -webkit-appearance: none;
+}
+.cf-group input:focus,
+.cf-group select:focus,
+.cf-group textarea:focus { border-color: #1a3fcc; }
+.cf-group input.error, .cf-group select.error { border-color: #c0202a; }
+.cf-group input.ok, .cf-group select.ok { border-color: #1a8a4a; }
+.cf-group input::placeholder,
+.cf-group textarea::placeholder { color: #999; }
+.cf-group textarea { resize: vertical; min-height: 90px; }
+
+.cf-select-wrap { position: relative; }
+.cf-select-wrap select { width: 100%; padding-right: 36px; cursor: pointer; }
+.cf-select-wrap::after {
+  content: ''; position: absolute;
+  right: 14px; top: 50%; transform: translateY(-50%);
+  width: 0; height: 0;
+  border-left: 5px solid transparent; border-right: 5px solid transparent;
+  border-top: 6px solid #999; pointer-events: none;
+}
+
+.cf-error {
+  font-size: 11px; font-weight: 500; color: #c0202a;
+  min-height: 16px; display: none;
+}
+.cf-error.visible { display: block; }
+
+.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.cf-alert {
+  display: none; align-items: center; gap: 10px;
+  padding: 12px 16px; border-radius: 6px; font-size: 13px; font-weight: 500;
+}
+.cf-alert.visible { display: flex; }
+.cf-alert.error { background: #fef2f2; border: 1px solid #fca5a5; color: #b91c1c; }
+.cf-alert.success { background: #f0fdf4; border: 1px solid #86efac; color: #166534; }
+
+.btn-cf-enviar {
+  background: #1a3fcc; color: white; border: none; border-radius: 6px;
+  font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; padding: 14px;
+  cursor: pointer; transition: background 0.2s, transform 0.2s; width: 100%;
+}
+.btn-cf-enviar:hover { background: #1230a8; transform: translateY(-1px); }
+.btn-cf-enviar:disabled { background: #999; cursor: not-allowed; transform: none; }

@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="admisiones.css">
+
 </head>
 <body>
 
@@ -15,7 +16,7 @@
 <!-- HEADER -->
 <header>
   <a class="logo-area" href="index.html">
-    <img class="logo-img" src="logo v2.png" alt="Logo Universidad Tecnológica Nexim">
+    <img class="logo-img" src="img/logo v2.png" alt="Logo Universidad Tecnológica Nexim">
   </a>
   <div class="logo-text">
     <span class="universidad">Universidad</span>
@@ -120,22 +121,10 @@
         <h3>Costos</h3>
       </div>
       <div class="card-body">
-        <div class="card-row">
-          <span>Inscripción</span>
-          <strong>$1,500 MXN</strong>
-        </div>
-        <div class="card-row">
-          <span>Colegiatura mensual</span>
-          <strong>$2,800 MXN</strong>
-        </div>
-        <div class="card-row">
-          <span>Material didáctico</span>
-          <strong>$500 MXN</strong>
-        </div>
-        <div class="card-row">
-          <span>Examen de admisión</span>
-          <strong>$300 MXN</strong>
-        </div>
+        <div class="card-row"><span>Inscripción</span><strong>$1,500 MXN</strong></div>
+        <div class="card-row"><span>Colegiatura mensual</span><strong>$2,800 MXN</strong></div>
+        <div class="card-row"><span>Material didáctico</span><strong>$500 MXN</strong></div>
+        <div class="card-row"><span>Examen de admisión</span><strong>$300 MXN</strong></div>
       </div>
     </div>
 
@@ -148,37 +137,108 @@
         <h3>Becas</h3>
       </div>
       <div class="card-body">
-        <div class="card-row">
-          <span>Excelencia académica</span>
-          <strong class="beca-pct">50%</strong>
-        </div>
-        <div class="card-row">
-          <span>Socioeconómica</span>
-          <strong class="beca-pct">hasta 75%</strong>
-        </div>
-        <div class="card-row">
-          <span>Deportiva</span>
-          <strong class="beca-pct">30%</strong>
-        </div>
-        <div class="card-row">
-          <span>Hermanos</span>
-          <strong class="beca-pct">15%</strong>
-        </div>
+        <div class="card-row"><span>Excelencia académica</span><strong class="beca-pct">50%</strong></div>
+        <div class="card-row"><span>Socioeconómica</span><strong class="beca-pct">hasta 75%</strong></div>
+        <div class="card-row"><span>Deportiva</span><strong class="beca-pct">30%</strong></div>
+        <div class="card-row"><span>Hermanos</span><strong class="beca-pct">15%</strong></div>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section">
-  <div class="cta-box">
-    <h3>¿Listo para comenzar?</h3>
-    <p>Las inscripciones para el periodo Agosto–Diciembre 2026 ya están abiertas.</p>
-    <div class="cta-btns">
-      <a href="#" class="btn-primary">Iniciar Solicitud</a>
-      <a href="#" class="btn-outline-dark">Más Información</a>
+<!-- FORMULARIO DE SOLICITUD -->
+<section class="solicitud-section">
+  <div class="section-label">
+    <h2>Iniciar Solicitud</h2>
+  </div>
+
+  <div class="solicitud-form">
+
+    <div class="sform-alert" id="sform-alert">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <span id="sform-alert-msg"></span>
     </div>
+
+    <div class="solicitud-form-grid">
+
+      <!-- Nombre -->
+      <div class="sform-group">
+        <label for="sf-nombre">Nombre(s)</label>
+        <input type="text" id="sf-nombre" placeholder="Nombre(s)">
+        <span class="field-error" id="sf-nombre-err"></span>
+      </div>
+
+      <!-- Apellidos -->
+      <div class="sform-group">
+        <label for="sf-apellidos">Apellidos</label>
+        <input type="text" id="sf-apellidos" placeholder="Apellido paterno y materno">
+        <span class="field-error" id="sf-apellidos-err"></span>
+      </div>
+
+      <!-- Correo -->
+      <div class="sform-group">
+        <label for="sf-correo">Correo Electrónico</label>
+        <input type="email" id="sf-correo" placeholder="correo@ejemplo.com">
+        <span class="field-error" id="sf-correo-err"></span>
+      </div>
+
+      <!-- Teléfono -->
+      <div class="sform-group">
+        <label for="sf-telefono">Teléfono</label>
+        <input type="tel" id="sf-telefono" placeholder="10 dígitos" maxlength="10">
+        <span class="field-error" id="sf-telefono-err"></span>
+      </div>
+
+      <!-- CURP -->
+      <div class="sform-group">
+        <label for="sf-curp">CURP</label>
+        <input type="text" id="sf-curp" placeholder="18 caracteres" maxlength="18" style="text-transform:uppercase">
+        <span class="field-error" id="sf-curp-err"></span>
+      </div>
+
+      <!-- Fecha nacimiento -->
+      <div class="sform-group">
+        <label for="sf-fecha">Fecha de Nacimiento</label>
+        <input type="date" id="sf-fecha">
+        <span class="field-error" id="sf-fecha-err"></span>
+      </div>
+
+      <!-- Carrera -->
+      <div class="sform-group full">
+        <label for="sf-carrera">Carrera de interés</label>
+        <div class="select-wrap">
+          <select id="sf-carrera">
+            <option value="" disabled selected>— Selecciona una carrera —</option>
+            <option>Ingeniería en Tecnologías de la Información</option>
+            <option>Ingeniería Industrial</option>
+            <option>Administración de Empresas</option>
+            <option>Contaduría Pública</option>
+            <option>Diseño Gráfico Digital</option>
+          </select>
+        </div>
+        <span class="field-error" id="sf-carrera-err"></span>
+      </div>
+
+      <!-- Comentarios -->
+      <div class="sform-group full">
+        <label for="sf-comentarios">Comentarios adicionales <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:#999">(opcional)</span></label>
+        <textarea id="sf-comentarios" placeholder="¿Hay algo más que quieras contarnos?"></textarea>
+      </div>
+
+    </div>
+
+    <div class="sform-footer">
+      <button class="btn-limpiar" type="button" onclick="limpiarSolicitud()">Limpiar</button>
+      <button class="btn-enviar-solicitud" type="button" id="btn-solicitud" onclick="enviarSolicitud()">
+        Enviar Solicitud
+      </button>
+    </div>
+
   </div>
 </section>
 
@@ -212,6 +272,156 @@
     </a>
   </div>
 </footer>
+
+<script>
+// ── HELPERS ──
+function setField(inputId, errId, isOk, msg) {
+  const input = document.getElementById(inputId);
+  const errEl = document.getElementById(errId);
+  input.classList.remove('error', 'ok');
+  if (msg) { input.classList.add('error'); errEl.textContent = msg; errEl.classList.add('visible'); }
+  else if (isOk) { input.classList.add('ok'); errEl.textContent = ''; errEl.classList.remove('visible'); }
+  else { errEl.classList.remove('visible'); }
+}
+
+function showAlert(msg, type) {
+  const al = document.getElementById('sform-alert');
+  document.getElementById('sform-alert-msg').textContent = msg;
+  al.className = 'sform-alert visible ' + type;
+  al.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ── VALIDACIONES ──
+function validarNombre(val) {
+  if (!val.trim()) return 'El nombre es obligatorio.';
+  if (val.trim().length < 2) return 'Ingresa un nombre válido.';
+  if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(val)) return 'Solo se permiten letras.';
+  return null;
+}
+
+function validarCorreo(val) {
+  if (!val.trim()) return 'El correo es obligatorio.';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) return 'Ingresa un correo válido.';
+  return null;
+}
+
+function validarTelefono(val) {
+  if (!val.trim()) return 'El teléfono es obligatorio.';
+  if (!/^\d{10}$/.test(val.replace(/\s/g, ''))) return 'Debe tener exactamente 10 dígitos.';
+  return null;
+}
+
+function validarCURP(val) {
+  if (!val.trim()) return 'La CURP es obligatoria.';
+  if (val.trim().length !== 18) return 'La CURP debe tener 18 caracteres.';
+  if (!/^[A-Z0-9]+$/.test(val.trim())) return 'La CURP solo contiene letras mayúsculas y números.';
+  return null;
+}
+
+function validarFecha(val) {
+  if (!val) return 'La fecha de nacimiento es obligatoria.';
+  const fecha = new Date(val);
+  const hoy = new Date();
+  const edad = (hoy - fecha) / (1000 * 60 * 60 * 24 * 365.25);
+  if (edad < 14) return 'Debes tener al menos 14 años.';
+  if (edad > 60) return 'Verifica la fecha de nacimiento.';
+  return null;
+}
+
+function validarCarrera(val) {
+  if (!val) return 'Selecciona una carrera.';
+  return null;
+}
+
+// ── ENVIAR ──
+function enviarSolicitud() {
+  document.getElementById('sform-alert').classList.remove('visible');
+
+  const nombre    = document.getElementById('sf-nombre').value;
+  const apellidos = document.getElementById('sf-apellidos').value;
+  const correo    = document.getElementById('sf-correo').value;
+  const telefono  = document.getElementById('sf-telefono').value;
+  const curp      = document.getElementById('sf-curp').value.toUpperCase();
+  const fecha     = document.getElementById('sf-fecha').value;
+  const carrera   = document.getElementById('sf-carrera').value;
+
+  const errNombre    = validarNombre(nombre);
+  const errApellidos = validarNombre(apellidos);
+  const errCorreo    = validarCorreo(correo);
+  const errTelefono  = validarTelefono(telefono);
+  const errCURP      = validarCURP(curp);
+  const errFecha     = validarFecha(fecha);
+  const errCarrera   = validarCarrera(carrera);
+
+  setField('sf-nombre',    'sf-nombre-err',    !errNombre,    errNombre);
+  setField('sf-apellidos', 'sf-apellidos-err', !errApellidos, errApellidos);
+  setField('sf-correo',    'sf-correo-err',    !errCorreo,    errCorreo);
+  setField('sf-telefono',  'sf-telefono-err',  !errTelefono,  errTelefono);
+  setField('sf-curp',      'sf-curp-err',      !errCURP,      errCURP);
+  setField('sf-fecha',     'sf-fecha-err',     !errFecha,     errFecha);
+  setField('sf-carrera',   'sf-carrera-err',   !errCarrera,   errCarrera);
+
+  if (errNombre || errApellidos || errCorreo || errTelefono || errCURP || errFecha || errCarrera) {
+    showAlert('Por favor corrige los campos marcados antes de continuar.', 'error');
+    return;
+  }
+
+  const btn = document.getElementById('btn-solicitud');
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  setTimeout(() => {
+    showAlert(`¡Solicitud enviada exitosamente, ${nombre.trim()}! Recibirás confirmación en tu correo.`, 'success');
+    btn.textContent = '✓ Solicitud Enviada';
+    btn.style.background = '#1a8a4a';
+  }, 1000);
+}
+
+// ── LIMPIAR ──
+function limpiarSolicitud() {
+  ['sf-nombre','sf-apellidos','sf-correo','sf-telefono','sf-curp','sf-fecha','sf-carrera','sf-comentarios']
+    .forEach(id => {
+      const el = document.getElementById(id);
+      if (el.tagName === 'SELECT') el.selectedIndex = 0;
+      else el.value = '';
+      el.classList.remove('error','ok');
+    });
+  ['sf-nombre-err','sf-apellidos-err','sf-correo-err','sf-telefono-err','sf-curp-err','sf-fecha-err','sf-carrera-err']
+    .forEach(id => { document.getElementById(id).classList.remove('visible'); });
+  document.getElementById('sform-alert').classList.remove('visible');
+  const btn = document.getElementById('btn-solicitud');
+  btn.disabled = false;
+  btn.textContent = 'Enviar Solicitud';
+  btn.style.background = '';
+}
+
+// ── CURP uppercase en tiempo real ──
+document.getElementById('sf-curp').addEventListener('input', function() {
+  this.value = this.value.toUpperCase();
+});
+
+// ── Solo números en teléfono ──
+document.getElementById('sf-telefono').addEventListener('input', function() {
+  this.value = this.value.replace(/\D/g, '');
+});
+
+// ── Validación blur ──
+const blurMap = [
+  ['sf-nombre',    'sf-nombre-err',    () => validarNombre(document.getElementById('sf-nombre').value)],
+  ['sf-apellidos', 'sf-apellidos-err', () => validarNombre(document.getElementById('sf-apellidos').value)],
+  ['sf-correo',    'sf-correo-err',    () => validarCorreo(document.getElementById('sf-correo').value)],
+  ['sf-telefono',  'sf-telefono-err',  () => validarTelefono(document.getElementById('sf-telefono').value)],
+  ['sf-curp',      'sf-curp-err',      () => validarCURP(document.getElementById('sf-curp').value)],
+  ['sf-fecha',     'sf-fecha-err',     () => validarFecha(document.getElementById('sf-fecha').value)],
+  ['sf-carrera',   'sf-carrera-err',   () => validarCarrera(document.getElementById('sf-carrera').value)],
+];
+blurMap.forEach(([inputId, errId, fn]) => {
+  document.getElementById(inputId).addEventListener('blur', function() {
+    const err = fn();
+    setField(inputId, errId, !err, err);
+  });
+});
+</script>
 
 </body>
 </html>
