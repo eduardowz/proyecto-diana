@@ -54,9 +54,7 @@ header {
   color: var(--red); letter-spacing: 6px; text-transform: uppercase;
 }
 
-.header-back {
-  justify-self: end;
-}
+.header-back { justify-self: end; }
 .header-back a {
   font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
   color: var(--gray); text-decoration: none; display: flex; align-items: center; gap: 6px;
@@ -162,9 +160,7 @@ main {
   color: var(--dark);
 }
 
-.input-wrap {
-  position: relative;
-}
+.input-wrap { position: relative; }
 
 .input-wrap input {
   font-family: 'Barlow', sans-serif;
@@ -179,10 +175,9 @@ main {
   transition: border-color 0.2s;
 }
 
-.input-wrap input:focus { border-color: var(--blue); background: white; }
-.input-wrap input.error { border-color: var(--red); }
-.input-wrap input.ok { border-color: var(--green); }
-
+.input-wrap input:focus  { border-color: var(--blue); background: white; }
+.input-wrap input.error  { border-color: var(--red); }
+.input-wrap input.ok     { border-color: var(--green); }
 .input-wrap input::placeholder { color: var(--gray); }
 
 .input-icon {
@@ -196,7 +191,7 @@ main {
 }
 
 .input-wrap input.error ~ .input-icon { color: var(--red); }
-.input-wrap input.ok ~ .input-icon { color: var(--green); }
+.input-wrap input.ok    ~ .input-icon { color: var(--green); }
 
 .field-msg {
   font-size: 11px;
@@ -206,7 +201,6 @@ main {
   color: var(--red);
   display: none;
 }
-
 .field-msg.visible { display: block; }
 .field-msg.success { color: var(--green); }
 
@@ -228,16 +222,9 @@ main {
 .toggle-pass:hover { color: var(--blue); }
 
 /* Fortaleza contraseña */
-.pass-strength {
-  margin-top: 6px;
-  display: none;
-}
+.pass-strength { margin-top: 6px; display: none; }
 .pass-strength.visible { display: block; }
-.strength-bar {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 4px;
-}
+.strength-bar { display: flex; gap: 4px; margin-bottom: 4px; }
 .strength-seg {
   flex: 1;
   height: 3px;
@@ -261,12 +248,7 @@ main {
   margin-top: -4px;
 }
 
-.remember-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-}
+.remember-wrap { display: flex; align-items: center; gap: 8px; cursor: pointer; }
 .remember-wrap input[type="checkbox"] { accent-color: var(--blue); width: 15px; height: 15px; cursor: pointer; }
 .remember-wrap span { font-size: 12px; color: var(--gray); }
 
@@ -295,7 +277,7 @@ main {
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
 }
-.btn-login:hover { background: var(--blue-dark); transform: translateY(-1px); }
+.btn-login:hover    { background: var(--blue-dark); transform: translateY(-1px); }
 .btn-login:disabled { background: var(--gray); cursor: not-allowed; transform: none; }
 
 /* Alerta general */
@@ -309,9 +291,9 @@ main {
   align-items: center;
   gap: 10px;
 }
-.login-alert.visible { display: flex; }
-.login-alert.error { background: #fef2f2; border: 1px solid #fca5a5; color: #b91c1c; }
-.login-alert.success { background: #f0fdf4; border: 1px solid #86efac; color: #166534; }
+.login-alert.visible  { display: flex; }
+.login-alert.error    { background: #fef2f2; border: 1px solid #fca5a5; color: #b91c1c; }
+.login-alert.success  { background: #f0fdf4; border: 1px solid #86efac; color: #166534; }
 
 /* Usuarios demo */
 .demo-hint {
@@ -329,12 +311,8 @@ main {
   color: var(--blue);
   margin-bottom: 8px;
 }
-.demo-hint table { width: 100%; border-collapse: collapse; }
-.demo-hint td {
-  font-size: 12px;
-  color: #333;
-  padding: 3px 0;
-}
+.demo-hint table  { width: 100%; border-collapse: collapse; }
+.demo-hint td     { font-size: 12px; color: #333; padding: 3px 0; }
 .demo-hint td:first-child { color: var(--gray); width: 90px; }
 .demo-hint code {
   background: white;
@@ -356,48 +334,6 @@ footer {
   text-transform: uppercase;
 }
 footer span { color: white; }
-
-/* ── CAPTCHA ── */
-.captcha-box {
-  border: 0.5px solid var(--border);
-  border-radius: 10px;
-  padding: 1rem;
-  background: var(--surface);
-}
-.cap-label { font-size: 13px; color: var(--gray); margin: 0 0 10px; }
-.cap-label strong { color: var(--text); font-weight: 600; }
-.cap-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-bottom: 10px;
-}
-.cap-item {
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 6px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-  background: var(--bg);
-  transition: border-color .15s, background .15s;
-}
-.cap-item:hover { border-color: var(--primary); }
-.cap-item.selected { border-color: var(--primary); background: #f0f0ff; }
-.cap-item.correct  { border-color: #22c55e; background: #f0fdf4; }
-.cap-item.wrong    { border-color: #ef4444; background: #fef2f2; }
-.cap-item svg { width: 26px; height: 26px; stroke: currentColor; }
-.cap-item span { font-size: 11px; color: var(--gray); text-align: center; }
-.cap-status { font-size: 12px; min-height: 16px; margin-bottom: 6px; }
-.cap-status.ok  { color: #16a34a; }
-.cap-status.err { color: #dc2626; }
-.cap-refresh {
-  background: none; border: none; cursor: pointer;
-  font-size: 12px; color: var(--gray); padding: 0;
-}
-.cap-refresh:hover { color: var(--text); }
 
 /* ── CAPTCHA ── */
 .captcha-box {
@@ -439,25 +375,10 @@ footer span { color: white; }
   transition: border-color .15s, background .15s;
 }
 
-.cap-item:hover {
-  border-color: #1a3fcc;
-  background: #f0f0ff;
-}
-
-.cap-item.selected {
-  border-color: #1a3fcc;
-  background: #eef0ff;
-}
-
-.cap-item.correct {
-  border-color: #22c55e;
-  background: #f0fdf4;
-}
-
-.cap-item.wrong {
-  border-color: #ef4444;
-  background: #fef2f2;
-}
+.cap-item:hover    { border-color: #1a3fcc; background: #f0f0ff; }
+.cap-item.selected { border-color: #1a3fcc; background: #eef0ff; }
+.cap-item.correct  { border-color: #22c55e; background: #f0fdf4; }
+.cap-item.wrong    { border-color: #ef4444; background: #fef2f2; }
 
 .cap-item svg {
   width: 26px;
@@ -477,7 +398,6 @@ footer span { color: white; }
   min-height: 16px;
   margin-bottom: 6px;
 }
-
 .cap-status.ok  { color: #16a34a; }
 .cap-status.err { color: #dc2626; }
 
@@ -490,13 +410,5 @@ footer span { color: white; }
   color: #666;
   padding: 4px 10px;
 }
-
-.cap-refresh:hover {
-  color: #111;
-  border-color: #aaa;
-}
-
-.cap-refresh:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
+.cap-refresh:hover    { color: #111; border-color: #aaa; }
+.cap-refresh:disabled { opacity: 0.4; cursor: not-allowed; }
