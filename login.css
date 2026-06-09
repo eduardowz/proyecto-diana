@@ -440,12 +440,12 @@ footer span { color: white; }
 }
 
 .cap-item:hover {
-  border-color: #3b4bc8;
+  border-color: #1a3fcc;
   background: #f0f0ff;
 }
 
 .cap-item.selected {
-  border-color: #3b4bc8;
+  border-color: #1a3fcc;
   background: #eef0ff;
 }
 
