@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Universidad Tecnológica Nexim</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<!-- HEADER -->
+<header>
+  <a class="logo-area" href="#">
+    <img class="logo-img" src="img/logo v2.png" alt="Logo Universidad Tecnológica Nexim">
+  </a>
+  <div class="logo-text">
+    <span class="universidad">Universidad</span>
+    <span class="tecnologica">— Tecnológica —</span>
+    <span class="nexim">Nexim</span>
+  </div>
+  <div class="search-box">
+    <input type="text" placeholder="Buscar...">
+    <button>
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <ul>
+    <li id="hb-wrap">
+      <button class="hamburger-btn" id="hb-btn">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="submenu" id="se-submenu">
+        <li>
+          <a href="noticias.html">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2"/>
+              <rect x="2" y="10" width="12" height="10" rx="1"/>
+              <path d="M2 14l2 2 4-4"/>
+            </svg>
+            Noticias
+          </a>
+        </li>
+        <li>
+          <a href="eventos.html">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            Eventos
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="estudiantil.html">Servicio Estudiantil</a></li>
+    <li><a href="admisiones.html">Admisiones</a></li>
+    <li><a href="carreras.html">Carreras</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <h1>Bienvenidos</h1>
+    <p>"Formando Profesionistas del Futuro"</p>
+    <div class="hero-cta">
+      <a href="carreras.html" class="btn-primary">Conoce más</a>
+      <a href="admisiones.html" class="btn-outline">Admisiones</a>
+    </div>
+  </div>
+</section>
+
+<!-- WELCOME -->
+<section class="welcome">
+  <h2>Universidad Tecnológica <span>Nexim</span></h2>
+  <div class="divider"></div>
+  <p>Formando líderes del mañana desde hoy</p>
+</section>
+
+<!-- NEWS & EVENTS -->
+<section class="news-events">
+  <div class="news-panel">
+    <div class="panel-header">
+      <div class="panel-icon">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2"/>
+          <path d="M2 14l2 2 4-4"/><rect x="2" y="10" width="12" height="10" rx="1"/>
+        </svg>
+      </div>
+      <h3>Noticias</h3>
+    </div>
+    <div class="news-item">
+      <div class="date">12 Mayo 2026</div>
+      <div class="title">Convocatoria de Admisiones Agosto–Diciembre 2026 ya disponible</div>
+    </div>
+    <div class="news-item">
+      <div class="date">05 Mayo 2026</div>
+      <div class="title">Nexim firma convenio con empresa tecnológica líder en la región</div>
+    </div>
+    <div class="news-item">
+      <div class="date">28 Abril 2026</div>
+      <div class="title">Estudiantes de Ingeniería obtienen primer lugar en hackathon nacional</div>
+    </div>
+    <div class="news-item">
+      <div class="date">15 Abril 2026</div>
+      <div class="title">Nuevo laboratorio de cómputo abre sus puertas al alumnado</div>
+    </div>
+  </div>
+
+  <div class="events-panel">
+    <div class="panel-header">
+      <div class="panel-icon">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      </div>
+      <h3>Eventos</h3>
+    </div>
+    <div class="event-item">
+      <div class="event-date-box"><span class="day">20</span><span class="month">May</span></div>
+      <div class="event-info">
+        <div class="title">Expo Carreras 2026 — Conoce tu futuro profesional</div>
+        <div class="place">📍 Aula Magna · 10:00 AM</div>
+      </div>
+    </div>
+    <div class="event-item">
+      <div class="event-date-box"><span class="day">27</span><span class="month">May</span></div>
+      <div class="event-info">
+        <div class="title">Conferencia: Inteligencia Artificial en la Industria</div>
+        <div class="place">📍 Sala de Conferencias · 9:00 AM</div>
+      </div>
+    </div>
+    <div class="event-item">
+      <div class="event-date-box"><span class="day">03</span><span class="month">Jun</span></div>
+      <div class="event-info">
+        <div class="title">Taller de Emprendimiento e Innovación</div>
+        <div class="place">📍 Centro de Vinculación · 2:00 PM</div>
+      </div>
+    </div>
+    <div class="event-item">
+      <div class="event-date-box"><span class="day">15</span><span class="month">Jun</span></div>
+      <div class="event-info">
+        <div class="title">Ceremonia de Graduación Generación 2026</div>
+        <div class="place">📍 Auditorio Principal · 5:00 PM</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="copy">© <span>Universidad Tecnológica Nexim</span> · Todos los derechos reservados</div>
+  <div class="copy">© <span>+656 123 4567</span></div>
+  <div class="social-links">
+    <a href="#" title="Instagram">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="5"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a href="#" title="Facebook">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+      </svg>
+    </a>
+    <a href="#" title="Twitter">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+      </svg>
+    </a>
+    <a href="#" title="LinkedIn">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+        <rect x="2" y="9" width="4" height="12"/>
+        <circle cx="4" cy="4" r="2"/>
+      </svg>
+    </a>
+  </div>
+</footer>
+
+<script>
+  const hbBtn = document.getElementById('hb-btn');
+  const submenu = document.getElementById('se-submenu');
+
+  hbBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const isOpen = submenu.classList.toggle('open');
+    if (isOpen) {
+      // Posiciona el submenú justo debajo del botón hamburger
+      const rect = hbBtn.getBoundingClientRect();
+      submenu.style.top = (rect.bottom) + 'px';
+      submenu.style.left = (rect.left) + 'px';
+    }
+  });
+
+  document.addEventListener('click', function() {
+    submenu.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>
