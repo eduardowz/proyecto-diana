@@ -212,6 +212,15 @@
   document.addEventListener('click', function() {
     submenu.classList.remove('open');
   });
+(function() {
+    const session = localStorage.getItem('nexim_session') 
+                 || sessionStorage.getItem('nexim_session');
+    
+    if (!session) {
+      window.location.href = 'index.html'; // redirige al login si no hay sesión
+    }
+  })();
+
 </script>
 
 </body>
