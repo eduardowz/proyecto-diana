@@ -12,7 +12,7 @@
 <div class="top-bar"></div>
 
 <header>
-  <a class="logo-area" href="index.html">
+  <a class="logo-area" href="home.html">
     <img class="logo-img" src="img/logo v2.png" alt="Logo Universidad Tecnológica Nexim">
   </a>
   <div class="logo-text">
@@ -21,7 +21,7 @@
     <span class="nexim">Nexim</span>
   </div>
   <div class="header-back">
-    <a href="index.html">
+    <a href="home.html">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
         <line x1="19" y1="12" x2="5" y2="12"/>
         <polyline points="12 19 5 12 12 5"/>
@@ -311,7 +311,7 @@ function doLogin() {
   showAlert('login-alert', 'login-alert-msg', `¡Bienvenido, ${user.nombre}! Redirigiendo...`, 'success');
   document.getElementById('btn-ingresar').disabled = true;
 
-  setTimeout(() => { window.location.href = 'index.html'; }, 1800);
+  setTimeout(() => { window.location.href = 'home.html'; }, 1800);
 }
 
 // ── VALIDACIONES REGISTRO ──
