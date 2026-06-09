@@ -356,3 +356,45 @@ footer {
   text-transform: uppercase;
 }
 footer span { color: white; }
+
+/* ── CAPTCHA ── */
+.captcha-box {
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  background: var(--surface);
+}
+.cap-label { font-size: 13px; color: var(--gray); margin: 0 0 10px; }
+.cap-label strong { color: var(--text); font-weight: 600; }
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.cap-item {
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  background: var(--bg);
+  transition: border-color .15s, background .15s;
+}
+.cap-item:hover { border-color: var(--primary); }
+.cap-item.selected { border-color: var(--primary); background: #f0f0ff; }
+.cap-item.correct  { border-color: #22c55e; background: #f0fdf4; }
+.cap-item.wrong    { border-color: #ef4444; background: #fef2f2; }
+.cap-item svg { width: 26px; height: 26px; stroke: currentColor; }
+.cap-item span { font-size: 11px; color: var(--gray); text-align: center; }
+.cap-status { font-size: 12px; min-height: 16px; margin-bottom: 6px; }
+.cap-status.ok  { color: #16a34a; }
+.cap-status.err { color: #dc2626; }
+.cap-refresh {
+  background: none; border: none; cursor: pointer;
+  font-size: 12px; color: var(--gray); padding: 0;
+}
+.cap-refresh:hover { color: var(--text); }
